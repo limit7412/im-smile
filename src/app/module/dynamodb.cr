@@ -3,6 +3,7 @@ require "http/client"
 require "uri"
 
 require "awscr-signer"
+require "crynamo"
 
 class Dynamodb
   def initialize(@name : String)
@@ -23,13 +24,21 @@ class Dynamodb
       )
       signer.sign(request)
     end
+    @payload = {
+      TableName: @name,
+      Key: Crynamo::Marshaller.to_dynamo(key)
+    }
   end
 
   def get_all
-    return HTTP::Client.new(@uri.host.to_s) do |client|
-      headers = @signer.sign_headers("GET", @uri)
-      response = client.get(@uri.path.to_s, headers)
-      return response.body
-    end
+    response = @http.post(
+      path: "/",
+      body: @payload.to_json,
+      headers: HTTP::Headers{
+        "Content-Type" => "application/x-amz-json-1.0",
+        "X-Amz-Target" => "DynamoDB_20120810.#{operation.to_s}",
+      },
+    )
+    return response.body
   end
 end
