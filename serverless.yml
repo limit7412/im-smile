@@ -19,5 +19,6 @@ provider:
     ${file(./env.yml)}
 
 functions:
-  hello:
+  imasmile:
     handler: imasmile
+    role: arn:aws:iam::569790495228:role/imasmile-role

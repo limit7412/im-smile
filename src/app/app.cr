@@ -3,8 +3,8 @@ require "uri"
 require "./../app/module/*"
 
 class App
-  # def initialize()
-  # end
+  def initialize()
+  end
 
   def run
     story = dat.get
