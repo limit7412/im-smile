@@ -2,13 +2,13 @@ require "crynamo"
 
 class Table
   def initialize()
-    # config = Crynamo::Configuration.new(
-    #   access_key_id: ENV["AWS_ACCESS_KEY_ID"],
-    #   secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"],
-    #   region: "ap-northeast-1",
-    #   endpoint: "https://dynamodb.ap-northeast-1.amazonaws.com",
-    # )
-    # @dynamo = Crynamo::Client.new(config)
+    config = Crynamo::Configuration.new(
+      access_key_id: ENV["AWS_ACCESS_KEY_ID"],
+      secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"],
+      region: "ap-northeast-1",
+      endpoint: "https://dynamodb.ap-northeast-1.amazonaws.com",
+    )
+    @dynamo = Crynamo::Client.new(config)
   end
 
   def get_idol

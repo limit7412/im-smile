@@ -8,7 +8,6 @@ class App
   end
 
   def run
-
     idol = @table.get_idol
     slack = PostSlack.new(
       name: idol["name"],
