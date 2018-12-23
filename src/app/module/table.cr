@@ -1,18 +1,13 @@
 require "crynamo"
+require "./dynamodb"
 
 class Table
   def initialize()
-    config = Crynamo::Configuration.new(
-      access_key_id: ENV["AWS_ACCESS_KEY_ID"],
-      secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"],
-      region: "ap-northeast-1",
-      endpoint: "https://dynamodb.ap-northeast-1.amazonaws.com",
-    )
-    @dynamo = Crynamo::Client.new(config)
+    @dynamo = Dynamodb.new("imasmile")
   end
 
   def test_dynamo
-    @dynamo.get!("imasmile", { name: "島村卯月" })
+    @dynamo.get_all
   end
 
   def get_idol
