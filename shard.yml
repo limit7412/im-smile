@@ -1,0 +1,12 @@
+name: dat2ohanasi-backend
+version: 0.1.0
+
+dependencies:
+  crynamo:
+    github: timkendall/crynamo
+    branch: master
+    version: ~> 0.1.1
+
+  slack:
+    github: manastech/crystal_slack
+    branch: master

@@ -1,0 +1,14 @@
+version: 1.0
+shards:
+  awscr-signer:
+    github: taylorfinnell/awscr-signer
+    version: 0.4.0
+
+  crynamo:
+    github: timkendall/crynamo
+    commit: 28fe9640391624992a789fc8ecb73cb6469b96aa
+
+  slack:
+    github: manastech/crystal_slack
+    commit: c12f5829ca8acdfc9e27744600fe19adaf4e0cd1
+
