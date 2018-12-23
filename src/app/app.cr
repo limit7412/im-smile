@@ -8,6 +8,7 @@ class App
   end
 
   def run
+    raise LambdaException.new("死にました", 404)
     idol = @table.get_idol
     slack = PostSlack.new(
       name: idol["name"],
@@ -16,6 +17,7 @@ class App
     )
 
     # return idol
-    return slack.post.body
+    # return slack.post.body
+    return @table.test_dynamo
   end
 end

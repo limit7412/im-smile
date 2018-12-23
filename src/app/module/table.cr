@@ -11,6 +11,10 @@ class Table
     @dynamo = Crynamo::Client.new(config)
   end
 
+  def test_dynamo
+    @dynamo.get!("imasmile", { name: "島村卯月" })
+  end
+
   def get_idol
     index = Random.rand(get_list.size)
     get_list[index]

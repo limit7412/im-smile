@@ -9,8 +9,8 @@ class WebHook
 
   def post(body)
     ssl = OpenSSL::SSL::Context::Client.new
-    # Lambda上で動かないので一旦クライアント証明書は無視
-    ssl.verify_mode = OpenSSL::SSL::VerifyMode::NONE
+    # Lambda上で明示的にクライアント証明書を示す必要がある
+    ssl.ca_certificates = "/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem"
 
     HTTP::Client.post(@uri,
       body: body.to_json,
