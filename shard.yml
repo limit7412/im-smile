@@ -7,7 +7,6 @@ dependencies:
     branch: master
     version: ~> 0.1.1
 
-dependencies:
   slack:
     github: manastech/crystal_slack
     branch: master

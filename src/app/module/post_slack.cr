@@ -1,15 +1,15 @@
 require "json"
 require "uri"
-require "./../runtime/webhook"
+require "./../../runtime/webhook"
 
 class PostSlack
-  def initialize(@url : String, @quote : String)
-    @slack : WebHook = WebHook.new  @url
+  def initialize(@name : String, @url : String, @quote : String)
+    @slack = WebHook.new  @url
   end
 
-  def bost_webhook
+  def post
     post = {
-      fallback: @quote,
+      fallback: "#{@name}「#{@quote}」",
       pretext: "<@#{ENV["SLACK_ID"]}> #{@quote}",
       # title: error.message,
       # text: error.backtrace.join("\n"),

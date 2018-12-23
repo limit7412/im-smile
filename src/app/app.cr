@@ -1,14 +1,22 @@
 require "json"
 require "uri"
-require "./../app/module/*"
+require "./module/*"
 
 class App
   def initialize()
+    @table = Table.new
   end
 
   def run
-    story = dat.get
-    return story
-    # return JSON.parse(res.body)
+    list = @table.get_list["list"]
+    index = Random.rand(list.size)
+    idol = list[index]
+    slack = PostSlack.new(
+      name: idol["name"],
+      url: idol["webhook"],
+      quote: idol["quote"]
+    )
+
+    return slack.post.body
   end
 end
