@@ -8,15 +8,15 @@ class App
   end
 
   def run
-    list = @table.get_list["list"]
-    index = Random.rand(list.size)
-    idol = list[index]
+
+    idol = @table.get_idol
     slack = PostSlack.new(
       name: idol["name"],
       url: idol["webhook"],
       quote: idol["quote"]
     )
 
+    # return idol
     return slack.post.body
   end
 end
