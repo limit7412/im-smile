@@ -8,7 +8,6 @@ class App
   end
 
   def run
-
     idol = @table.get_idol
     slack = PostSlack.new(
       name: idol["name"],
@@ -16,7 +15,7 @@ class App
       quote: idol["quote"]
     )
 
-    # return idol
     return slack.post.body
+    # return @table.test_dynamo
   end
 end

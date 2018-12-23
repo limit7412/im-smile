@@ -4,6 +4,10 @@ set -euo pipefail
 
 EXEC="$LAMBDA_TASK_ROOT/buildfile/$_HANDLER"
 
+# # 証明書がわるいんか？
+# unlink /etc/pki/tls/cert.pem
+# cp /etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem /etc/pki/tls/cert.pem
+
 if [ ! -x "$EXEC" ]; then
     ERROR="{\"errorMessage\" : \"$_HANDLER is not found.\", \"errorType\" : \"HandlerNotFoundException\"}"
     curl -X POST "http://${AWS_LAMBDA_RUNTIME_API}/2018-06-01/runtime/init/error"  -d "$ERROR"
@@ -11,3 +15,17 @@ if [ ! -x "$EXEC" ]; then
 fi
 
 $EXEC
+
+# 内部確認用
+# while true; do
+#   HEADERS="$(mktemp)"
+#   # Get an event
+#   EVENT_DATA=$(curl -sS -LD "$HEADERS" -X GET "http://${AWS_LAMBDA_RUNTIME_API}/2018-06-01/runtime/invocation/next")
+#   REQUEST_ID=$(grep -Fi Lambda-Runtime-Aws-Request-Id "$HEADERS" | tr -d '[:space:]' | cut -d: -f2)
+
+#   # Execute the handler function from the script
+#   RESPONSE=$(ls -l /etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem)
+
+#   # Send the response
+#   curl -X POST "http://${AWS_LAMBDA_RUNTIME_API}/2018-06-01/runtime/invocation/$REQUEST_ID/response" -d "$RESPONSE"
+# done

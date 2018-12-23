@@ -21,7 +21,7 @@ module LambdaError
       title: error.message,
       text: error.backtrace.join("\n"),
       color: "#EB4646",
-      footer: "dat2ohanasi-backend",
+      footer: "imasmile",
     }
     body = {
       attachments: [post]
