@@ -1,13 +1,12 @@
 require "json"
 require "uri"
-require "./../app/module/vip2ch"
+require "./../app/module/*"
 
 class App
-  def initialize(@url : String)
-    dat = Vip2ch.new @url
-  end
+  # def initialize()
+  # end
 
-  def get_data
+  def run
     story = dat.get
     return story
     # return JSON.parse(res.body)
