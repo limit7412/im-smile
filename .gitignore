@@ -9,3 +9,4 @@ buildfile
 lib
 env.yml
 .shards
+test\.cr
